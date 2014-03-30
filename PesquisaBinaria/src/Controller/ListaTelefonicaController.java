@@ -42,6 +42,11 @@ public class ListaTelefonicaController {
 		}
 	}
 	
+	public ListaOrdenada<Pessoa> getLista()
+	{
+		return this.lista;
+	}
+	
 	public Nodo<Pessoa> primeiroDaLista()
 	{
 		return lista.getHead();

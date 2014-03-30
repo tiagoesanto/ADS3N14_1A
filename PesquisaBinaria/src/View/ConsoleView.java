@@ -1,8 +1,11 @@
 package View;
 import static java.lang.System.out;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
 import Controller.ListaTelefonicaController;
+import Estruturas.ListaEmArray;
 import Estruturas.Nodo;
 import Model.Pessoa;
 
@@ -43,11 +46,11 @@ public class ConsoleView {
 					+ "3 - Procurar contato\n"
 					+ "4 - Adicionar contatos\n"
 					+ "5 - Sair");
-			
+								
 			try
 			{
-			opcao = leitor.nextInt();		
-			
+				opcao = leitor.nextInt();
+				
 				switch (opcao)
 				{
 					case 1:	
@@ -131,6 +134,8 @@ public class ConsoleView {
 	{	
 		boolean sair = false;
 		
+		ListaEmArray listaEmArray = new ListaEmArray(lista.getLista());
+		
 		while (sair == false)
 		{	
 			try
@@ -138,13 +143,14 @@ public class ConsoleView {
 				out.println("Digite o nome do contato:");
 				
 				String nomeContatoBusca = leitor.next();
-				Pessoa contatoBusca = new Pessoa();
-				contatoBusca.setNome(nomeContatoBusca);
 				
-				Nodo<Pessoa> contatoEncontrado = lista.buscaNodo(contatoBusca);
+				Nodo<Pessoa> contatoEncontrado = listaEmArray.procuraContato(nomeContatoBusca);
 				
-				contatoView.printContato(contatoEncontrado.getChave().getNome(), contatoEncontrado.getChave().getTelefone());
-				
+				if (contatoEncontrado != null)				
+					contatoView.printContato(contatoEncontrado.getChave().getNome(), contatoEncontrado.getChave().getTelefone());				
+				else
+					out.println("Contato não encontrado!");
+					
 				out.println("\n1 - Procurar outro contato | 2 - Voltar ao Menu Inicial");
 			
 				opcao = leitor.nextInt();		
