@@ -151,6 +151,8 @@ public class ConsoleView {
 				else
 					out.println("Contato não encontrado!");
 					
+				out.println("A pesquisa utilizou " + listaEmArray.getContadorUltimaPesquisa() + " comparações nessa busca!");
+				
 				out.println("\n1 - Procurar outro contato | 2 - Voltar ao Menu Inicial");
 			
 				opcao = leitor.nextInt();		

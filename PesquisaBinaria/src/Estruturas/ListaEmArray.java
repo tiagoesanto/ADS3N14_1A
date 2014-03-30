@@ -47,6 +47,8 @@ public class ListaEmArray {
 		
 		while (esquerda <= direita)
 		{
+			contadorUltimaPesquisa ++;
+			
 			meio = (esquerda + direita)/2;
 			
 			if (!lista.get(meio).getChave().getNome().toUpperCase().startsWith(nome.toUpperCase()))
