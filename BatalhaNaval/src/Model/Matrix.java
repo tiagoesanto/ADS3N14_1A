@@ -1,21 +1,26 @@
 package Model;
 
-public class Matrix 
+public class Matrix
 {
 	
 	private int ROWS;
 	private int COLUMNS;
-	private double[][] matrix;	
-	 	 	
+	private Double[][] matrix;	
+		 	
+	
 	public Matrix (int rows, int columns)
 	{
 		this.ROWS = rows;
 		this.COLUMNS = columns;	
-		
-		 matrix = new double[ROWS][COLUMNS];
+		matrix = new Double[ROWS][COLUMNS];		
 	}
 	
-	public double[][] getMatrix()
+	public void setPosition(int row, int column, Double insertion)
+	{
+		matrix[row][column] = insertion;
+	}
+	
+	public Double[][] getMatrix()
 	{
 		return this.matrix;
 	}
