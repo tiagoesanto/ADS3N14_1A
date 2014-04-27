@@ -3,8 +3,8 @@ import static java.lang.System.out;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import Controller.ListaTelefonicaController;
-import Estruturas.Nodo;
-import Model.Pessoa;
+import Estruturas.*;
+import Model.*;
 
 public class ConsoleView {
 	
@@ -31,7 +31,7 @@ public class ConsoleView {
 	}
 	
 	public void menuPrincipal()
-	{
+	{/*
 		boolean sair = false;
 		opcao = 0; 
 		while (sair == false)
@@ -205,6 +205,6 @@ public class ConsoleView {
 			{
 				System.out.print("Opção inválida!!!");
 			}
-		}
+		}*/
 	}
 }
