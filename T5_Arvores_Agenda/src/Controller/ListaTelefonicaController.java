@@ -10,24 +10,34 @@ public class ListaTelefonicaController {
 	
 	
 	private Scanner scanner;
-	ArvoreBinaria arvore = new ArvoreBinaria<Pessoa>(null);
-	private ContatoView view = new ContatoView();
+	ArvoreBinaria arvore;
+	private ContatoView view;
 
 	public ListaTelefonicaController() throws FileNotFoundException
 	{
+		view = new ContatoView();
 		scanner = new Scanner(new FileReader("PhonebookFiles.txt")).useDelimiter("\\|");
 	}
 
 	public void iniciaLista() 
 	{
+		Nodo<Pessoa> raiz = new Nodo<Pessoa>();
+		Pessoa contato = new Pessoa();
+		contato.setNome(scanner.next());
+		contato.setTelefone(scanner.next());
+		raiz.setChave(contato);
+		arvore = new ArvoreBinaria<Pessoa>(raiz); 
+		System.out.println("Inserido Raiz: " + contato.getNome());
+		
 		while (scanner.hasNext())
 		{
 			Nodo<Pessoa> novo = new Nodo<Pessoa>();
-			Pessoa contato = new Pessoa();
+			contato = new Pessoa();
 			contato.setNome(scanner.next());
 			contato.setTelefone(scanner.next());
 			novo.setChave(contato);
-			arvore.Inserir(novo, contato);
+			System.out.print("Inserido: " + contato.getNome());
+			arvore.Inserir(contato);			
 		}
 	}
 	
