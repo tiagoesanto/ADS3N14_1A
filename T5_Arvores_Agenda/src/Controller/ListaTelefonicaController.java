@@ -10,7 +10,7 @@ public class ListaTelefonicaController {
 	
 	
 	private Scanner scanner;
-	ArvoreBinaria arvore;
+	public ArvoreBinaria arvore;
 	private ContatoView view;
 
 	public ListaTelefonicaController() throws FileNotFoundException
@@ -37,7 +37,7 @@ public class ListaTelefonicaController {
 			contato.setTelefone(scanner.next());
 			novo.setChave(contato);
 			System.out.print("Inserido: " + contato.getNome());
-			arvore.Inserir(contato);			
+			arvore.inserirNodo(contato);			
 		}
 	}
 	

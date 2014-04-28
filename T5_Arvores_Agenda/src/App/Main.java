@@ -9,20 +9,9 @@ public class Main {
 
 	public static void main(String[] args) 
 	{
-		// ConsoleView view = new ConsoleView();
+		ConsoleView view = new ConsoleView();
 
-		// view.menuPrincipal();
-		
-		try
-		{
-			ListaTelefonicaController lista = new ListaTelefonicaController();
-		
-			lista.iniciaLista();
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.print("ARQUIVO NÃO ENCONTRADO");			
-		}
+		view.menuPrincipal();
 	}
 
 }

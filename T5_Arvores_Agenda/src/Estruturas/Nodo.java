@@ -3,12 +3,14 @@ package Estruturas;
 public class Nodo<T> 
 {
 	private T chave;
+	private Nodo<T> raiz;	
 	private Nodo<T> esquerda;
 	private Nodo<T> direita;
 	
 	public Nodo()
 	{
 		chave = null;
+		raiz = null;
 		esquerda = null;
 		direita = null;
 	}
@@ -19,6 +21,14 @@ public class Nodo<T>
 
 	public void setChave(T chave) {
 		this.chave = chave;
+	}
+
+	public Nodo<T> getRaiz() {
+		return raiz;
+	}
+
+	public void setRaiz(Nodo<T> raiz) {
+		this.raiz = raiz;
 	}
 
 	public Nodo<T> getDireita() {
@@ -35,5 +45,5 @@ public class Nodo<T>
 
 	public void setEsquerda(Nodo<T> esquerda) {
 		this.esquerda = esquerda;
-	}
+	}	
 }

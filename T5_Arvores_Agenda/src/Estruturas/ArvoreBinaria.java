@@ -9,12 +9,12 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		this.raiz = raiz;
 	}
 	
-	public void Inserir(T chave)
+	public void inserirNodo(T chave)
 	{
-		this.Inserir(null, chave);
+		this.inserirNodo(null, chave);
 	}
 
-	public void Inserir(Nodo<T> nodo, T chave) 
+	public void inserirNodo(Nodo<T> nodo, T chave) 
 	{	
 		if (nodo == null)
 			nodo = this.raiz;
@@ -22,34 +22,107 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		Nodo<T> novo = new Nodo<T>();
 		novo.setChave(chave);
 		
-		int comparação = nodo.getChave().compareTo(chave);
+		int comparacao = nodo.getChave().compareTo(chave);
 		
 		// Se a chave a ser inserida é MENOR que a chave do nodo verificará se pode ser inserida na esquerda
-		if (comparação > 0)
+		if (comparacao > 0)
         {
             if (nodo.getEsquerda() == null)
             {
+            	novo.setRaiz(nodo);
             	nodo.setEsquerda(novo);
             	System.out.println(" (foi inserido à esquerda)");
             }
             else
-                this.Inserir(nodo.getEsquerda(), chave);
+                this.inserirNodo(nodo.getEsquerda(), chave);
         }
 		// Se a chave a ser inserida é MAIOR que a chave do nodo verificará se pode ser inserida na esquerda
-        else if (comparação < 0)
+        else if (comparacao < 0)
         {
             if (nodo.getDireita() == null)
             {
-            	System.out.println(" (foi inserido à direita)");
+            	novo.setRaiz(nodo);
             	nodo.setDireita(novo);
+            	System.out.println(" (foi inserido à direita)");
             }
             else
-            	this.Inserir(nodo.getDireita(), chave);
+            	this.inserirNodo(nodo.getDireita(), chave);
         }
         else
         {
         	System.out.println("Nome já existe");
         }
+	}
+	
+	public void excluirNodo(Nodo<T> nodo)
+	{
+		Nodo<T> raiz = nodo.getRaiz();
+		
+		// Verifica se o nodo é uma folha
+		if (nodo.getEsquerda() == null && nodo.getDireita() == null)
+		{
+			// Se o nodo não tiver raiz, significa que é a raiz da Arvore
+			if (raiz == null)
+			{
+				this.raiz = null;
+			}
+			// Verifica em qual lado o nodo esta
+			if (raiz.getEsquerda() != null && raiz.getEsquerda() == nodo)
+			{
+				raiz.setEsquerda(null);
+			}
+			else 
+			{
+				raiz.setDireita(null);
+			}
+		}
+		// Se o nodo tiver um filho apenas
+		else if (nodo.getEsquerda() == null ^ nodo.getDireita() == null)
+		{
+			if (nodo.getEsquerda() != null)
+			{
+				if (raiz == null)
+				{
+					this.raiz = nodo.getEsquerda();
+				}
+				if (raiz.getEsquerda() != null && raiz.getEsquerda() == nodo)
+				{
+					raiz.setEsquerda(nodo.getEsquerda());
+				}
+				else 
+				{
+					raiz.setDireita(nodo.getEsquerda());
+				}
+			}
+			else
+			{
+				if (raiz == null)
+				{
+					this.raiz = nodo.getDireita();
+				}
+				if (raiz.getEsquerda() != null && raiz.getEsquerda() == nodo)
+				{
+					raiz.setEsquerda(nodo.getEsquerda());
+				}
+				else 
+				{
+					raiz.setDireita(nodo.getEsquerda());
+				}
+			}
+		}
+		// Se o nodo tiver dois filhos
+		else
+		{
+			if (raiz == null)
+			{
+				System.out.println("Impossível Remover (Nodo Raiz)");
+			}
+			else
+			{
+				System.out.println("Impossível Remover (Item com dois filhos)");
+			}
+		}
+			
 	}
 
 }
