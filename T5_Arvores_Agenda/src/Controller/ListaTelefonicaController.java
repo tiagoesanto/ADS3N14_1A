@@ -41,4 +41,8 @@ public class ListaTelefonicaController {
 		}
 	}
 	
+	public Nodo<Pessoa> buscarContato(Pessoa contato)
+	{
+		return this.arvore.buscarNodo(contato);
+	}
 }

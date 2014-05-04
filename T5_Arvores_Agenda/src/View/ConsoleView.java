@@ -38,8 +38,9 @@ public class ConsoleView {
 		{
 			System.out.println("\nLISTA TELEFÔNICA\n"
 					+ "Selecione uma opção:\n"					
-					+ "1 - Adicionar contatos\n"
-					+ "2 - Remover contato\n"
+					+ "1 - Adicionar contato\n"
+					+ "2 - Buscar contato\n"
+					+ "3 - Remover contato\n"					
 					+ "0 - Sair");
 			
 			try
@@ -49,9 +50,13 @@ public class ConsoleView {
 				switch (opcao)
 				{
 					case 1:
-						adicionarContato();
+						this.adicionarContato();
 						break;
 					case 2:
+						this.procurarContato();
+						break;
+					case 3:
+						this.excluirContato();
 						break;
 					case 0:
 						sair = true;
@@ -60,23 +65,6 @@ public class ConsoleView {
 				}
 			}
 			catch (Exception e)
-			{
-				System.out.print("Opção inválida!!!");
-			}
-		}
-	}
-	
-	public void procurarContato()
-	{	
-		boolean sair = false;
-		
-		while (sair == false)
-		{	
-			try
-			{
-				
-			}
-			catch(Exception e)
 			{
 				System.out.print("Opção inválida!!!");
 			}
@@ -116,6 +104,114 @@ public class ConsoleView {
 					case 2:
 						sair = true;
 						break;
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.print("Opção inválida!!!");
+			}
+		}
+	}
+	
+	public void procurarContato()
+	{	
+		boolean sair = false;
+		
+		while (sair == false)
+		{	
+			System.out.println("Digite o nome do contato a ser procurado:");
+			try
+			{
+				String nome = leitor.next();				
+				Pessoa contato = new Pessoa();
+				contato.setNome(nome);				
+				
+				Nodo<Pessoa> retorno = this.lista.buscarContato(contato);				
+				
+				if (retorno == null)
+				{
+					System.out.println("Contato não encontrado! \nBuscar outro contato?\n 1 - SIM; 2 - NÃO");
+					opcao = leitor.nextInt();
+					
+					switch(opcao)
+					{
+						case 1:
+							break;
+						case 2:
+							sair = true;
+							break;
+					}
+				}
+				else
+				{					
+					System.out.println("Nome: "+ retorno.getChave().getNome());
+					System.out.println("Telefone: "+ retorno.getChave().getTelefone() + "\n");
+					System.out.println("Buscar outro contato?\n 1 - SIM; 2 - NÃO");
+					opcao = leitor.nextInt();
+					
+					switch(opcao)
+					{
+						case 1:
+							break;
+						case 2:
+							sair = true;
+							break;
+					}
+				}
+			}
+			catch(Exception e)
+			{
+				System.out.print("Opção inválida!!!");
+			}
+		}
+	}
+	
+	public void excluirContato()
+	{
+		boolean sair = false;
+		
+		while (sair == false)
+		{	
+			System.out.println("Digite o nome do contato a ser deletado:");
+			try
+			{
+				String nome = leitor.next();				
+				Pessoa contato = new Pessoa();
+				contato.setNome(nome);				
+				
+				Nodo<Pessoa> retorno = this.lista.buscarContato(contato);				
+				
+				if (retorno == null)
+				{
+					System.out.println("Contato não encontrado! \nDeletar outro contato?\n 1 - SIM; 2 - NÃO");
+					opcao = leitor.nextInt();
+					
+					switch(opcao)
+					{
+						case 1:
+							break;
+						case 2:
+							sair = true;
+							break;
+					}
+				}
+				else
+				{
+					System.out.println("Nome: "+ retorno.getChave().getNome());
+					System.out.println("Telefone: "+ retorno.getChave().getTelefone() + "\n");
+					System.out.println("Tem certeza que quer deletar esse contato?\n 1 - SIM; 2 - NÃO");
+					opcao = leitor.nextInt();
+					
+					switch(opcao)
+					{
+						case 1:
+							lista.arvore.excluirNodo(retorno);
+							sair = true;
+							break;
+						case 2:
+							sair = true;
+							break;
+					}
 				}
 			}
 			catch(Exception e)

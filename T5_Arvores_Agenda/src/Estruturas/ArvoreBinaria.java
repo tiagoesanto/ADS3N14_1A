@@ -25,7 +25,7 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		int comparacao = nodo.getChave().compareTo(chave);
 		
 		// Se a chave a ser inserida é MENOR que a chave do nodo verificará se pode ser inserida na esquerda
-		if (comparacao > 0)
+		if (comparacao >= 0)
         {
             if (nodo.getEsquerda() == null)
             {
@@ -47,10 +47,6 @@ public class ArvoreBinaria<T extends Comparable<T>>
             }
             else
             	this.inserirNodo(nodo.getDireita(), chave);
-        }
-        else
-        {
-        	System.out.println("Nome já existe");
         }
 	}
 	
@@ -124,5 +120,43 @@ public class ArvoreBinaria<T extends Comparable<T>>
 		}
 			
 	}
-
+	
+	public Nodo<T> buscarNodo (T contato)
+	{	
+		return this.buscarNodo(null, contato);
+	}
+	
+	public Nodo<T> buscarNodo (Nodo<T> raiz, T contato)
+	{
+		if(raiz == null)
+			raiz = this.raiz;
+		
+		Nodo<T> retornoBusca = new Nodo<T>();
+		retornoBusca.setChave(contato);
+		
+		int comparacao = raiz.getChave().compareTo(contato);
+		
+		if (comparacao == 0)
+			retornoBusca = raiz;
+		else
+		{			
+			if (comparacao > 0)
+			{
+				if (raiz.getEsquerda() != null)
+					return this.buscarNodo(raiz.getEsquerda(), contato);
+				else
+					return null;
+			}
+			else if (comparacao < 0)
+			{
+				if (raiz.getDireita() != null)
+					return this.buscarNodo(raiz.getDireita(), contato);
+				else
+					return null;
+			}
+		}
+		
+		return retornoBusca;
+	}
+	
 }
